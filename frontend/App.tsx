@@ -13,8 +13,8 @@ function App() {
 
   return (
     <>
-      <div className="overflow-y-auto md:overflow-y-hidden md:flex flex-col md:flex-row relative h-screen justify-between bg-black text-white items-center font-nunito">
-        <div className="w-full xl:w-2/4 h-full py-6 px-4 md:px-1 flex ">
+      <div className="overflow-y-auto md:overflow-y-hidden md:flex flex-col md:flex-row relative h-screen justify-between bg-[#111128] text-white items-center font-nunito">
+        <div className="w-full xl:w-2/4 h-full py-6 px-4 md:px-1 flex bg-[url('https://res.cloudinary.com/dgbreoalg/image/upload/v1728226081/backg_zxltjo.jpg')] bg-cover bg-center bg-no-repeat">
           <div className="flex flex-col justify-between w-full ">
             <div className="md:px-8">
               <h1 className="text-md md:text-xl font-nunito font-semibold">DevBounty</h1>
@@ -25,7 +25,7 @@ function App() {
                   <h2 className="text-3xl md:text-6xl text-slate-500 font-sans font-semibold">
                     Aptos
                     <br /> Open-Source{" "}
-                    <span className="text-[#6EE]">
+                    <span className="text-[#6EE7B7]">
                       <br /> Project Funding
                     </span>
                   </h2>
@@ -80,7 +80,7 @@ function App() {
         <div className="flex w-full h-full xl:w-2/4 flex-col items-center py-12 px-4">
           <div className="w-full flex justify-center items-center">
             <Tabs defaultValue="feature" className="w-full">
-              <TabsList className="w-full bg-slate-400 text-white">
+              <TabsList className="w-full bg-slate-700 text-white">
                 <TabsTrigger
                   value="feature"
                   className="w-1/2   data-[state=active]:text-white data-[state=active]:bg-[#4F46E5]"

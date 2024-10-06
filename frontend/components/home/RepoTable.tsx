@@ -7,15 +7,16 @@ import { useQuery } from "@tanstack/react-query";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
 import { Repository, RepositoryTableProps } from "@/types";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 const organisations = [
-  { name: "nwakaku", shortName: "Nwakaku", chipStyle: "bg-blue-300 text-white" },
   { name: "aptos-labs", shortName: "AptosLabs", chipStyle: "bg-red-500 text-white" },
   { name: "worldcoin", shortName: "Worldcoin", chipStyle: "bg-lime-200 text-black" },
+  { name: "nwakaku", shortName: "Nwakaku", chipStyle: "bg-[#6EE7B7] text-black" },
 ];
 
 const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
-  const [repos, setRepos] = useState<Repository[]>([]);
+  const [repos, setRepos] = useState<any[]>([]);
   const [repoIds, setRepoIds] = useState<bigint[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>(""); // assume searchTerm is a state variable
   const [rewards, setRewards] = useState<any[]>([]);
@@ -28,7 +29,8 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
     for (const org of organisations) {
       const res = await axios.get(`https://api.github.com/users/${org.name}/repos`);
       const orgRepo = res.data.map((repo: Repository) => ({ ...repo, organisation: org.name }));
-      allRepos.push(...orgRepo);
+        allRepos.push(...orgRepo);
+        console.log(orgRepo);
     }
     return allRepos;
   };
@@ -105,16 +107,15 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
         <Input
           type="text"
           placeholder="Search by name, org or description"
-          className="max-w-xl"
+          className="max-w-xl text-black"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
       <div>
         <Table>
-          <TableHeader className="bg-blue-500">
+          <TableHeader className="bg-slate-700">
             <TableRow className="rounded-t-2xl">
-              <TableHead className="w-[100px] text-white font-semibold">Sr.No.</TableHead>
               <TableHead className="text-white font-semibold">Organisation </TableHead>
               <TableHead className="w-[200px] text-white font-semibold">Repo Name</TableHead>
               <TableHead className="text-right text-white font-semibold">Total Rewards </TableHead>
@@ -127,9 +128,14 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
               const org = organisations.find((x) => x.name === repo.organisation);
               return (
                 <TableRow key={repo.id}>
-                  <TableCell className="font-medium">{index + 1}</TableCell>
-                  <TableCell>
-                    <Badge className={`${org?.chipStyle}`}>{org?.shortName}</Badge>
+                  <TableCell className="">
+                    <Badge className={`${org?.chipStyle} flex space-x-2 w-fit`}>
+                      <Avatar>
+                        <AvatarImage src={repo.owner.avatar_url} />
+                        <AvatarFallback>CN</AvatarFallback>
+                      </Avatar>
+                      <p>{org?.shortName}</p>
+                    </Badge>
                   </TableCell>
                   <TableCell className="underline cursor-pointer">
                     <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="font-semibold">

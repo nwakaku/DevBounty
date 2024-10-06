@@ -1,12 +1,14 @@
 import React from "react";
 import { BookMarked, CodeXml, Gem, LogIn, UserRoundCog } from "lucide-react";
 
+// bg - slate - 400;
+
 export default function Features() {
   return (
     <div className="py-2 grid grid-cols-2 gap-8">
-      <div className="p-6 rounded-xl border border-lime-300  space-y-4">
+      <div className="p-6 rounded-xl border border-slate-700  space-y-4">
         <div className="flex items-center gap-4">
-          <CodeXml className="text-lime-300" size={"32px"} />
+          <CodeXml className="text-lime-400" size={"32px"} />
           <h2 className="text-lg font-medium">Developer Contributions</h2>
         </div>
         <p className="text-base text-slate-500">
@@ -15,9 +17,9 @@ export default function Features() {
         </p>
       </div>
 
-      <div className="p-6 rounded-xl border border-lime-300 space-y-4">
+      <div className="p-6 rounded-xl border border-slate-700 space-y-4">
         <div className="flex items-center gap-4">
-          <LogIn className="text-lime-300" size={"32px"} />
+          <LogIn className="text-lime-400" size={"32px"} />
           <h2 className="text-lg font-medium">Secure Login & Verification</h2>
         </div>
         <p className="text-base text-slate-500">
@@ -26,9 +28,9 @@ export default function Features() {
         </p>
       </div>
 
-      <div className="p-6 rounded-xl border border-lime-300 space-y-4">
+      <div className="p-6 rounded-xl border border-slate-700 space-y-4">
         <div className="flex items-center gap-4">
-          <Gem className="text-lime-300" size={"32px"} />
+          <Gem className="text-lime-400" size={"32px"} />
           <h2 className="text-lg font-medium">Fund & Reward Management</h2>
         </div>
         <p className="text-base text-slate-500">
@@ -37,9 +39,9 @@ export default function Features() {
         </p>
       </div>
 
-      <div className="p-6 rounded-xl border border-lime-300 space-y-4">
+      <div className="p-6 rounded-xl border border-slate-700 space-y-4">
         <div className="flex items-center gap-4">
-          <UserRoundCog className="text-lime-300" size={"32px"} />
+          <UserRoundCog className="text-lime-400" size={"32px"} />
           <h2 className="text-lg font-medium">User Roles</h2>
         </div>
         <p className="text-base text-slate-500">
@@ -47,9 +49,9 @@ export default function Features() {
         </p>
       </div>
 
-      <div className="p-6 rounded-xl border border-lime-300 space-y-4">
+      <div className="p-6 rounded-xl border border-slate-700 space-y-4">
         <div className="flex items-center gap-4">
-          <BookMarked className="text-lime-300" size={"32px"} />
+          <BookMarked className="text-lime-400" size={"32px"} />
           <h2 className="text-lg font-medium">Future Advancements</h2>
         </div>
         <p className="text-base text-slate-500">

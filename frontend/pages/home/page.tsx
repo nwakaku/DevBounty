@@ -46,7 +46,7 @@ function Home() {
   };
 
   return (
-    <>
+    <div className="bg-[#111128] text-white">
       <Header />
       <div className="md:px-8">
         {connected ? (
@@ -75,10 +75,7 @@ function Home() {
               <div>
                 <div className="flex justify-between items-center flex-wrap gap-4">
                   <StatsCard />
-                  <Button size="sm">
-                    <Gem className="mr-2 h-4 w-4" />
-                    View Attestation
-                  </Button>
+                  
                 </div>
               </div>
             )}
@@ -102,7 +99,7 @@ function Home() {
           // </CardHeader>
         )}
       </div>
-    </>
+    </div>
   );
 }
 
