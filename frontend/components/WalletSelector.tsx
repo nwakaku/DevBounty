@@ -49,10 +49,18 @@ export function WalletSelector() {
     }
   }, [account?.address, toast]);
 
+  const handleLogout = () => {
+    if (account && account.address) {
+      localStorage.removeItem(account.address);
+      // Refresh the page
+      window.location.reload();
+    }
+  };
+
   return connected ? (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button>{account?.ansName || truncateAddress(account?.address) || "Unknown"}</Button>
+        <Button className="bg-[#4F46E5]">{account?.ansName || truncateAddress(account?.address) || "Unknown"}</Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
         <DropdownMenuItem onSelect={copyAddress} className="gap-2">
@@ -65,7 +73,12 @@ export function WalletSelector() {
             </a>
           </DropdownMenuItem>
         )}
-        <DropdownMenuItem onSelect={disconnect} className="gap-2">
+        <DropdownMenuItem
+          onSelect={() => {
+            disconnect(), handleLogout();
+          }}
+          className="gap-2"
+        >
           <LogOut className="h-4 w-4" /> Disconnect
         </DropdownMenuItem>
       </DropdownMenuContent>
@@ -73,7 +86,7 @@ export function WalletSelector() {
   ) : (
     <Dialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
       <DialogTrigger asChild>
-        <Button className="bg-white text-black hover:bg-slate-500">Connect a Wallet</Button>
+        <Button className="bg-[#4F46E5]  hover:bg-slate-500">Connect a Wallet</Button>
       </DialogTrigger>
       <ConnectWalletDialog close={closeDialog} />
     </Dialog>

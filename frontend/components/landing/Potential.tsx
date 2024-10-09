@@ -5,8 +5,8 @@ export default function Potential() {
   return (
     <div className="py-2">
       <div className="px-8 py-2 space-y-12">
-        <div className="flex  gap-4 p-2 shadow-lg shadow-[#6EE7B7] rounded-md">
-          <Gem className="text-lime-300" size={"32px"} />
+        <div className="flex items-center  gap-4 p-2 shadow-lg shadow-blue-500 rounded-md bg-[#111128]">
+          <Gem className="text-blue-500" size={60} />
           <div>
             <h2 className="text-lg font-medium">Incentivize Contributions</h2>
             <p className="text-base text-slate-500">
@@ -16,8 +16,8 @@ export default function Potential() {
           </div>
         </div>
 
-        <div className="flex  gap-4 p-2 shadow-lg shadow-[#6EE7B7] rounded-md">
-          <TrendingUp className="text-lime-300" size={"32px"} />
+        <div className="flex items-center gap-4 p-2 shadow-lg shadow-[#6EE7B7] rounded-md bg-[#111128]">
+          <TrendingUp className="text-lime-300" size={60} />
 
           <div>
             <h2 className="text-lg font-medium">Streamline Fund Management</h2>
@@ -28,8 +28,8 @@ export default function Potential() {
           </div>
         </div>
 
-        <div className="flex  gap-4 p-2 shadow-lg shadow-[#6EE7B7] rounded-md">
-          <Group className="text-lime-300" size={"32px"} />
+        <div className="flex items-center gap-4 p-2 shadow-lg shadow-red-300 rounded-md bg-[#111128]">
+          <Group className="text-red-300" size={60} />
           <div>
             <h2 className="text-lg font-medium">Foster Collaboration</h2>
             <p className="text-base text-slate-500">
