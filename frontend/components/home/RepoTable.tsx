@@ -1,26 +1,38 @@
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
-// import { Repository, RepositoryTableProps } from "@/types";
+import { Repository, RepositoryTableProps } from "@/types";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useEffect, useMemo, useState } from "react";
 import axios from "axios";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "../ui/button";
 import { Input } from "../ui/input";
-import { Repository, RepositoryTableProps } from "@/types";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 const organisations = [
-  { name: "aptos-labs", shortName: "AptosLabs", chipStyle: "bg-red-500 text-white" },
-  { name: "worldcoin", shortName: "Worldcoin", chipStyle: "bg-lime-200 text-black" },
-  { name: "nwakaku", shortName: "Nwakaku", chipStyle: "bg-[#6EE7B7] text-black" },
+  {
+    name: "aptos-labs",
+    shortName: "AptosLabs",
+    chipStyle: "bg-slate-400 text-white",
+    address: "0xf9424969a5cfeb4639c4c75c2cd0ca62620ec624f4f210e15ad8f1e4fe5253a1",
+  },
+  {
+    name: "worldcoin",
+    shortName: "Worldcoin",
+    chipStyle: " text-black",
+    address: "0xf9424969a5cfeb4639c4c75c2cd0ca62620ec624f4f28d76c4881a1e567d753f",
+  },
+  {
+    name: "nwakaku",
+    shortName: "Nwakaku",
+    chipStyle: "bg-[#6EE7B7] text-black",
+    address: "0xd869b1399d8b19dba8c5aa4ae63a64233e17aac473c410e15ad8f1e4fe5253a1",
+  },
 ];
 
 const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
   const [repos, setRepos] = useState<any[]>([]);
-  const [repoIds, setRepoIds] = useState<bigint[]>([]);
-  const [searchTerm, setSearchTerm] = useState<string>(""); // assume searchTerm is a state variable
+  const [searchTerm, setSearchTerm] = useState<string>("");
   const [rewards, setRewards] = useState<any[]>([]);
-
   const [currentPage, setCurrentPage] = useState<number>(0);
   const [itemsPerPage, setItemsPerPage] = useState<number>(10);
 
@@ -28,9 +40,12 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
     const allRepos: Repository[] = [];
     for (const org of organisations) {
       const res = await axios.get(`https://api.github.com/users/${org.name}/repos`);
-      const orgRepo = res.data.map((repo: Repository) => ({ ...repo, organisation: org.name }));
-        allRepos.push(...orgRepo);
-        console.log(orgRepo);
+      const orgRepos = res.data.map((repo: Repository) => ({
+        ...repo,
+        organisation: org.name,
+        orgData: org, // Include all org data
+      }));
+      allRepos.push(...orgRepos);
     }
     return allRepos;
   };
@@ -45,8 +60,6 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
   useEffect(() => {
     if (data) {
       setRepos(data);
-      setRepoIds(data.map((repo) => BigInt(repo.id)));
-      localStorage.setItem("repoCount", data.length.toString());
     }
   }, [data]);
 
@@ -79,16 +92,19 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
     return filteredRepos.slice(startIndex, endIndex);
   }, [filteredRepos, currentPage, itemsPerPage]);
 
-  useEffect(() => {
-    if (currentPage > Math.ceil(filteredRepos.length / itemsPerPage)) {
-      setCurrentPage(Math.ceil(filteredRepos.length / itemsPerPage));
-    }
-  }, [filteredRepos, currentPage, itemsPerPage]);
+  const truncateAddress = (address: string) => {
+    return `${address.slice(0, 6)}...${address.slice(-4)}`;
+  };
+
+  const getRandomBounty = () => {
+    const bounties = ["$100", "$200", "$300", "$500", "$1000"];
+    return bounties[Math.floor(Math.random() * bounties.length)];
+  };
 
   if (isLoading) {
     return (
       <div className="flex justify-center items-center">
-        <p className="text--lg text-blue-500">Loading Reposistories....</p>
+        <p className="text--lg text-blue-500">Loading Repositories....</p>
       </div>
     );
   }
@@ -96,7 +112,7 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
   if (error) {
     return (
       <div className="flex justify-center items-center">
-        <p className="text--lg text-blue-500">An Error occured Fetching Reposistories....</p>
+        <p className="text--lg text-blue-500">An Error occurred Fetching Repositories....</p>
       </div>
     );
   }
@@ -116,41 +132,50 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
         <Table>
           <TableHeader className="bg-slate-700">
             <TableRow className="rounded-t-2xl">
+              {/* <TableHead className="text-white font-semibold">No </TableHead> */}
               <TableHead className="text-white font-semibold">Organisation </TableHead>
               <TableHead className="w-[200px] text-white font-semibold">Repo Name</TableHead>
-              <TableHead className="text-right text-white font-semibold">Total Rewards </TableHead>
+              <TableHead className="text-center text-white font-semibold">Total Bounty </TableHead>
               <TableHead className="text-center text-white font-semibold">Actions</TableHead>
               <TableHead className="text-center text-white font-semibold">Description </TableHead>
+              <TableHead className="text-white text-center font-semibold">Address</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {paginatedRepos.map((repo, index) => {
-              const org = organisations.find((x) => x.name === repo.organisation);
+              const org = repo.orgData;
               return (
-                <TableRow key={repo.id}>
-                  <TableCell className="">
-                    <Badge className={`${org?.chipStyle} flex space-x-2 w-fit`}>
+                <TableRow className="border-b-slate-700" key={repo.id}>
+                  {/* <TableCell className="text-left">#{repo.id}</TableCell> */}
+                  <TableCell className="flex space-x-2 items-center">
+                    <Badge className={`${org?.chipStyle} p-2 flex space-x-2 w-fit rounded-sm`}>
                       <Avatar>
                         <AvatarImage src={repo.owner.avatar_url} />
                         <AvatarFallback>CN</AvatarFallback>
                       </Avatar>
-                      <p>{org?.shortName}</p>
                     </Badge>
+                    <div className="flex flex-col">
+                      <p className=" font-semibold text-lg">{org?.shortName}</p>
+                      <small>#{repo.id}</small>
+                    </div>
                   </TableCell>
                   <TableCell className="underline cursor-pointer">
                     <a href={repo.html_url} target="_blank" rel="noopener noreferrer" className="font-semibold">
                       {repo.name}
                     </a>
                   </TableCell>
-                  <TableCell className="text-right">
-                    {repo.reward !== "0" ? `${repo.reward} ETH` : "Loading..."}
+                  <TableCell className="text-center">
+                    <p className="font-semibold text-lg text-[#6EE7B7]">
+                      {repo.reward !== "0" ? `${repo.reward} Apto` : `${getRandomBounty()}+`}
+                    </p>
                   </TableCell>
                   <TableCell className="text-center underline cursor-pointer">
                     <Button variant="ghost" onClick={() => onRepoSelect(repo)} className="text-red-500">
                       View Issues
                     </Button>
                   </TableCell>
-                  <TableCell className="text-center">{repo.description}</TableCell>
+                  <TableCell className="text-center max-w-[400px] text-wrap">{repo.description}</TableCell>
+                  <TableCell className="text-center">{org?.address ? truncateAddress(org.address) : "N/A"}</TableCell>
                 </TableRow>
               );
             })}

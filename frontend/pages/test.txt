@@ -1,0 +1,64 @@
+  const FetchDetailsOfClosedIssuesByPR = async (repo: Repository) => {
+    if (!repo || !repo.organisation || !repo.name) {
+      setError("Invalid repository information.");
+      return;
+    }
+
+    try {
+      setError(null);
+
+      // Fetch merged pull requests
+      const mergedPullRequests = await octokit.paginate(octokit.rest.pulls.list, {
+        owner: repo.organisation,
+        repo: repo.name,
+        state: "closed",
+        sort: "updated",
+        direction: "desc",
+        per_page: 100,
+      });
+
+      // Filter to only include merged PRs and ensure merged_at is not null
+      const actuallyMergedPRs = mergedPullRequests.filter(
+        (pr): pr is typeof pr & { merged_at: string } => pr.merged_at !== null,
+      );
+
+      console.log(actuallyMergedPRs);
+
+      // For each merged PR, fetch the issues it closed
+      const mergedPRsWithIssues = await Promise.all(
+        actuallyMergedPRs.map(async (pr) => {
+          // Search for issues closed by this PR
+          const query = `repo:${repo.organisation}/${repo.name} is:issue is:closed linked:pr`;
+          const issuesResponse = await octokit.search.issuesAndPullRequests({
+            q: query,
+            per_page: 100,
+          });
+
+          // Filter issues to only include those closed by this specific PR
+          const linkedIssues = issuesResponse.data.items.filter((issue) => {
+            // Check if the issue was closed by this PR
+            // Only process if closed_at exists
+            if (!issue.closed_at) return false;
+
+            const closedAt = new Date(issue.closed_at);
+            const mergedAt = new Date(pr.merged_at); // We know merged_at is not null due to our filter
+            const createdAt = new Date(pr.created_at);
+
+            return closedAt <= mergedAt && closedAt >= createdAt;
+          });
+
+          return {
+            ...pr,
+            closedIssues: linkedIssues,
+          };
+        }),
+      );
+
+      // Update state with merged PRs and their associated closed issues
+      console.log(mergedPRsWithIssues);
+      setMergedPRs(mergedPRsWithIssues);
+    } catch (error) {
+      console.error("Error fetching merged PRs and closed issues:", error);
+      setError("Failed to fetch merged PRs and closed issues.");
+    }
+  };

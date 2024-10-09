@@ -19,6 +19,7 @@
   "dependencies": {
     "@aptos-labs/ts-sdk": "^1.28.0",
     "@aptos-labs/wallet-adapter-react": "^3.6.2",
+    "@octokit/rest": "^21.0.2",
     "@radix-ui/react-avatar": "^1.1.1",
     "@radix-ui/react-collapsible": "^1.1.0",
     "@radix-ui/react-dialog": "^1.1.1",
@@ -30,7 +31,9 @@
     "@tanstack/react-query": "^5.51.23",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
+    "firebase": "^10.14.0",
     "lucide-react": "^0.383.0",
+    "octokit": "^4.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
