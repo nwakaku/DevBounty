@@ -1,39 +1,69 @@
-## Create Aptos Dapp Boilerplate Template
+# DevBounty
 
-The Boilerplate template provides a starter dapp with all necessary dapp infrastructure and a simple wallet info implementation, transfer APT and a simple message board functionality to send and read a message on chain.
+Incentivizing open-source development on Aptos blockchain.
 
-## Read the Boilerplate template docs
+## Table of Contents
+- [Overview](#overview)
+- [Key Features](#key-features)
+- [How It Works](#how-it-works)
+- [Technology Stack](#technology-stack)
+- [Getting Started](#getting-started)
+- [Future Roadmap](#future-roadmap)
 
-To get started with the Boilerplate template and learn more about the template functionality and usage, head over to the [Boilerplate template docs](https://aptos.dev/en/build/create-aptos-dapp/templates/boilerplate)
+## Overview
 
-## The Boilerplate template provides:
+DevBounty is a platform designed to reward open-source developers for their contributions to Aptos ecosystem projects directly on GitHub. We've streamlined the process of managing and distributing funds on the Aptos blockchain, making it easier for organizations to incentivize development and for contributors to get recognized and rewarded.
 
-- **Folder structure** - A pre-made dapp folder structure with a `frontend` and `contract` folders.
-- **Dapp infrastructure** - All required dependencies a dapp needs to start building on the Aptos network.
-- **Wallet Info implementation** - Pre-made `WalletInfo` components to demonstrate how one can use to read a connected Wallet info.
-- **Transfer APT implementation** - Pre-made `transfer` components to send APT to an address.
-- **Message board functionality implementation** - Pre-made `message` components to send and read a message on chain
+## Key Features
 
-## What tools the template uses?
+1. **Native Aptos Integration**: Our smart contracts are deployed on the Aptos blockchain, leveraging its high throughput and low-cost transactions.
 
-- React framework
-- Vite development tool
-- shadcn/ui + tailwind for styling
-- Aptos TS SDK
-- Aptos Wallet Adapter
-- Node based Move commands
+2. **Developer Contributions**: Developers can explore GitHub repositories, pick issues to work on, and earn rewards in APT tokens.
 
-## What Move commands are available?
+3. **Secure Authentication**: With GitHub login integrated through Petra Wallet, we ensure that only verified users participate, maintaining a secure and trusted environment.
 
-The tool utilizes [aptos-cli npm package](https://github.com/aptos-labs/aptos-cli) that lets us run Aptos CLI in a Node environment.
+4. **Fund & Reward Management**: Repo owners and pool managers can allocate funds to specific issues. Once resolved, rewards are automatically distributed to the contributor's Aptos wallet.
 
-Some commands are built-in the template and can be ran as a npm script, for example:
+5. **User Roles**:
+   - **Pool Managers**: Manage rewards, add funds, set bounties.
+   - **Contributors**: Resolve issues and earn rewards.
 
-- `npm run move:publish` - a command to publish the Move contract
-- `npm run move:test` - a command to run Move unit tests
-- `npm run move:compile` - a command to compile the Move contract
-- `npm run move:upgrade` - a command to upgrade the Move contract
-- `npm run dev` - a command to run the frontend locally
-- `npm run deploy` - a command to deploy the dapp to Vercel
+6. **Transparent Transactions**: All reward distributions are recorded on the Aptos blockchain, ensuring full transparency and traceability.
 
-For all other available CLI commands, can run `npx aptos` and see a list of all available commands.
+## How It Works
+
+1. **Connect**: Log in with your GitHub account and connect your Petra Wallet.
+2. **Explore**: Browse participating repositories and open issues.
+3. **Contribute**: Pick an issue, work on it, and submit a pull request.
+4. **Verification**: Once your PR is merged, our system automatically verifies the contribution.
+5. **Reward**: Receive APT tokens directly to your connected wallet.
+
+## Technology Stack
+
+- **Frontend**: React.js with Vite
+- **Backend**: Node.js
+- **Blockchain**: Aptos
+- **Smart Contracts**: Move language
+- **Wallet Integration**: Petra Wallet
+- **APIs**: GitHub API, Aptos API
+- **Transaction Handling**: Aptos SDK
+
+## Getting Started
+
+1. Visit [DevBounty Website](https://devbounty.example.com)
+2. Connect your GitHub account
+3. Link your Petra Wallet
+4. Start exploring open issues and contributing!
+
+## Future Roadmap
+
+- Implement advanced fund distribution strategies
+- Introduce a governance token for community-driven decision making
+- Expand to support multiple Aptos-based tokens for rewards
+- Develop a reputation system for contributors
+
+---
+
+DevBounty aims to create a more rewarding and transparent environment for open-source development in the Aptos ecosystem. By bridging the gap between organizations and developers through blockchain technology, we're fostering innovation and collaboration in the decentralized space.
+
+Join us in shaping the future of open-source development on Aptos!

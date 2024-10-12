@@ -31,7 +31,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
     <>
       {/* <Header /> */}
-      <div className="flex flex-col flex-col bg-[#111128] min-h-screen font-nunito">
+      <div className="flex flex-col bg-[#111128] min-h-screen font-nunito">
         <div className="w-full ">{children}</div>
       </div>
     </>
