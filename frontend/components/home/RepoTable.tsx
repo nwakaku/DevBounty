@@ -48,7 +48,7 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
       allRepos.push(...orgRepos);
     }
     return allRepos;
-  };
+  }; 
 
   const { data, error, isLoading } = useQuery({
     queryKey: ["repos"],
@@ -104,7 +104,7 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center">
-        <p className="text--lg text-blue-600 mt-12">Loading Repositories....</p>
+        <p className="text--lg text-[#4F46E5] mt-12">Loading Repositories....</p>
       </div>
     );
   }
