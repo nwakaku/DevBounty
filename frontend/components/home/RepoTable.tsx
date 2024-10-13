@@ -104,7 +104,7 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center">
-        <p className="text--lg text-blue-500">Loading Repositories....</p>
+        <p className="text--lg text-blue-600 mt-12">Loading Repositories....</p>
       </div>
     );
   }
@@ -112,7 +112,7 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
   if (error) {
     return (
       <div className="flex justify-center items-center">
-        <p className="text--lg text-blue-500">An Error occurred Fetching Repositories....</p>
+        <p className="text--lg text-red-500 mt-12">An Error occurred Fetching Repositories....</p>
       </div>
     );
   }
