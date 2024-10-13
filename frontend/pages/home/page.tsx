@@ -200,9 +200,9 @@ function Home() {
                 </div>
               </div>
             ) : (
-              <Card>
+              <Card className="bg-transparent max-w-lg mt-48 mx-auto px-24">
                 <CardContent className="flex flex-col gap-10 pt-6">
-                  <p>Connect your Github</p>
+                  <p className="text-xl text-white text-center text-semibold">Connect your Github</p>
                   <GitHubAuthComponent />
                 </CardContent>
               </Card>
