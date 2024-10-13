@@ -40,7 +40,8 @@ function App() {
                     Aptos
                     <br /> Open-Source{" "}
                     <span className="text-[#6EE7B7]">
-                      <br /> Project Funding
+                      <br />
+                       Project Funding
                     </span>
                   </h2>
                   <p className="text-gray-300 text-xl">
@@ -50,7 +51,7 @@ function App() {
                     <Button
                       onClick={() => navigate("/home")}
                       size="sm"
-                      className="px-12 font-semibold bg-[#4F46E5] hover:bg-lime-800"
+                      className="px-12 font-semibold bg-[#4F46E5] hover:bg-blue-800"
                     >
                       Launch App
                     </Button>
@@ -58,7 +59,7 @@ function App() {
                 </div>
               </div>
               <div className="w-full px-8">
-                <div className="flex justify-between items-center gap-2 w-full">
+                <div className="flex justify-start space-x-10 items-center gap-2 w-full mr-6">
                   <div className="space-y-2">
                     <h4 className="text-gray-300 font-medium">Awarded</h4>
                     <p className="text-sm md:text-xl text-white">
@@ -75,12 +76,12 @@ function App() {
                       <span className="font-semibold">487</span> Contributors
                     </p>
                   </div>
-                  <div className="space-y-2">
+                  {/* <div className="space-y-2">
                     <h4 className="text-gray-300 font-medium">From</h4>
                     <p className="text-sm md:text-xl text-white">
                       <span className="font-semibold">2</span> Countries
                     </p>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

@@ -202,7 +202,7 @@ function Home() {
             ) : (
               <Card>
                 <CardContent className="flex flex-col gap-10 pt-6">
-                  <p>Github Auth</p>
+                  <p>Connect your Github</p>
                   <GitHubAuthComponent />
                 </CardContent>
               </Card>

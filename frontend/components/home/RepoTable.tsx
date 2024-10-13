@@ -123,14 +123,14 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
         <Input
           type="text"
           placeholder="Search by name, org or description"
-          className="max-w-xl text-black"
+          className="max-w-xl text-black rounded-sm"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
       <div>
         <Table>
-          <TableHeader className="bg-slate-700">
+          <TableHeader className="bg-slate-900 hover:bg-gray-500">
             <TableRow className="rounded-t-2xl">
               {/* <TableHead className="text-white font-semibold">No </TableHead> */}
               <TableHead className="text-white font-semibold">Organisation </TableHead>
@@ -141,11 +141,11 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
               <TableHead className="text-white text-center font-semibold">Address</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody>
+          <TableBody className="">
             {paginatedRepos.map((repo, index) => {
               const org = repo.orgData;
               return (
-                <TableRow className="border-b-slate-700" key={repo.id}>
+                <TableRow className="border-b-slate-700 hover:bg-gray-500" key={repo.id}>
                   {/* <TableCell className="text-left">#{repo.id}</TableCell> */}
                   <TableCell className="flex space-x-2 items-center">
                     <Badge className={`${org?.chipStyle} p-2 flex space-x-2 w-fit rounded-sm`}>
