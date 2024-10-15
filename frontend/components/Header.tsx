@@ -12,7 +12,7 @@ export function Header() {
         <h1 className="flex justify-center items-center text-xl cursor-pointer ">
           <Avatar>
             <AvatarImage src={"https://res.cloudinary.com/dgbreoalg/image/upload/v1728310382/devbounty_ozadmc.png"} />
-            <AvatarFallback>Izuh</AvatarFallback>
+            <AvatarFallback>Iw</AvatarFallback>
           </Avatar>
           DevBounty
         </h1>
