@@ -1,4 +1,3 @@
-import React from "react";
 import { Group, Gem, TrendingUp } from "lucide-react";
 
 export default function Potential() {

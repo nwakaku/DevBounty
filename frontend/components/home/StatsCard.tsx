@@ -1,4 +1,4 @@
-import { Wallet, GitGraph } from "lucide-react";
+import { GitGraph } from "lucide-react";
 
 export function StatsCard() {
   const repoCount = localStorage.getItem("repoCount");

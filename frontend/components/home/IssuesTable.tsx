@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import AllocatedModal from "./AllocatedModal";
 import { InputTransactionData, useWallet } from "@aptos-labs/wallet-adapter-react";
@@ -35,22 +35,27 @@ const createTransactionPayload = (functionName: string, args: any[]): InputTrans
   },
 });
 
-export default function IssuesTable({ issues, onAllocatedReward, repoId, orgData }: IssuesTableProps) {
+export default function IssuesTable({ issues, onAllocatedReward, orgData }: IssuesTableProps) {
   const { signAndSubmitTransaction } = useWallet();
   const [rewardInfo, setRewardInfo] = useState<{ [key: number]: RewardInfo | null }>({});
 
   const fetchRewardInfo = useCallback(async () => {
     if (!orgData || !orgData.address) return;
 
+    const orgAddress = orgData.address.toString();
+
+    // console.log(orgAddress);
+
     const rewardInfoPromises = issues.map(async (issue) => {
       try {
         const result = await aptos.view({
           payload: {
             function: `${MODULE_ADDRESS}::reward_distribution::get_reward_info`,
-            functionArguments: [orgData.address, issue.number.toString()],
+            functionArguments: [orgAddress, issue.number.toString()],
           },
         });
         const [amount, unlockTime] = result as [number, number];
+        console.log(result);
         return [issue.number, { amount: amount / 1e8, unlockTime }];
       } catch (error) {
         console.error(`Error fetching reward info for issue ${issue.number}:`, error);
@@ -59,6 +64,7 @@ export default function IssuesTable({ issues, onAllocatedReward, repoId, orgData
     });
 
     const results = await Promise.all(rewardInfoPromises);
+    // console.log(results);
     setRewardInfo(Object.fromEntries(results));
   }, [issues, orgData]);
 
@@ -68,7 +74,7 @@ export default function IssuesTable({ issues, onAllocatedReward, repoId, orgData
 
   const handleAllocateReward = async (issueNumber: number, amount: number) => {
     const amountInCoins = amount * 1e8; // Convert to Octas (8 decimal places)
-    const unlockTimeSecs = Math.floor(Date.now() / 1000) + 86400; // 24 hours from now
+    const unlockTimeSecs = 1; // 1 minute from now
 
     try {
       const payload = createTransactionPayload("add_locked_rewards", [
@@ -86,6 +92,8 @@ export default function IssuesTable({ issues, onAllocatedReward, repoId, orgData
       // Handle error (e.g., show error message to user)
     }
   };
+
+  // console.log(rewardInfo);
 
   return (
     <div className="overflow-x-auto">

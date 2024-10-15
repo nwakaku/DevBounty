@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useCallback } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { InputTransactionData, useWallet } from "@aptos-labs/wallet-adapter-react";
@@ -84,7 +84,7 @@ export default function MergedPRsTable({ mergedPRs, orgData }: MergedPRsTablePro
     }
   }, [connected, account]);
 
-  const handleClaimReward = async (prId: number, fixesReference: number) => {
+  const handleClaimReward = async ( fixesReference: number) => {
     try {
       const payload = createTransactionPayload("claim_reward", [orgData.address, fixesReference.toString()]);
       const response = await signAndSubmitTransaction(payload);
@@ -101,13 +101,13 @@ export default function MergedPRsTable({ mergedPRs, orgData }: MergedPRsTablePro
 
   const renderClaimButton = (pr: MergedPR) => {
     const info = rewardInfo[pr.fixesReference];
-    if (!info) return <p>Not Receiver</p>;
+    if (!info) return <p>Closed</p>;
 
     const now = Math.floor(Date.now() / 1000);
     const isClaimable = now >= info.unlockTime;
     return (
       <Button
-        onClick={() => handleClaimReward(pr.id, pr.fixesReference)}
+        onClick={() => handleClaimReward( pr.fixesReference)}
         disabled={!isClaimable}
         className={isClaimable ? "bg-green-600 hover:bg-green-700" : "bg-gray-400"}
       >
@@ -140,7 +140,7 @@ export default function MergedPRsTable({ mergedPRs, orgData }: MergedPRsTablePro
               <TableCell>{new Date(pr.merged_at).toLocaleString()}</TableCell>
               <TableCell className="text-center">#{pr.fixesReference}</TableCell>
               <TableCell className="text-center">
-                {isUser === pr.user.login ? renderClaimButton(pr) : "Not Receiver"}
+                {isUser === pr.user.login ? renderClaimButton(pr) : "Login to See"}
               </TableCell>
             </TableRow>
           ))}

@@ -1,12 +1,10 @@
 "use client";
 
-// import Features from "@/components/landing/Features";
-// import Potential from "@/components/landing/Potential";
 import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Features from "./components/landing/Features";
 import Potential from "./components/landing/Potential";
-import { useNavigate, useNavigation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function App() {
   const navigate = useNavigate();

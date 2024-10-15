@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Octokit } from "@octokit/rest";
 import { useWallet } from "@aptos-labs/wallet-adapter-react";
 import { Header } from "@/components/Header";
@@ -129,6 +129,8 @@ function Home() {
       }
     }
   }, [connected, account]);
+
+  console.log(selectedIssueId);
 
   return (
     <div className="bg-[#111128] text-white ">

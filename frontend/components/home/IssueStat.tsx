@@ -1,5 +1,4 @@
 import { GitGraph, Wallet } from "lucide-react";
-import React from "react";
 
 export default function IssueStat() {
   const numIssue = localStorage.getItem("issueNumber");
@@ -8,7 +7,7 @@ export default function IssueStat() {
       <div className="p-4 shadow-sm rounded-md border space-y-2 bg-slate-700">
         <h2 className="text-md md:text-lg text-white">Unclaimed Rewards</h2>
         <div className="flex justify-between items-center">
-          <h1 className="md:text-2xl text-white font-bold md:font-medium">9770 APT</h1>
+          <h1 className="md:text-2xl text-white font-bold md:font-medium">1,000 APT</h1>
           <Wallet className="h-6 w-6 text-[#6EE7B7] font-bold" />
         </div>
         <p className="text-sm text-slate-400">Total rewards for all Issues</p>

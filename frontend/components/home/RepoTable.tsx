@@ -50,6 +50,8 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
     return allRepos;
   };
 
+  console.log(setItemsPerPage(8), setRewards([]));
+
   const { data, error, isLoading } = useQuery({
     queryKey: ["repos"],
     queryFn: fetchRepos,
@@ -145,7 +147,7 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
             {paginatedRepos.map((repo, index) => {
               const org = repo.orgData;
               return (
-                <TableRow className="border-b-slate-700" key={repo.id}>
+                <TableRow className="border-b-slate-700" key={index}>
                   {/* <TableCell className="text-left">#{repo.id}</TableCell> */}
                   <TableCell className="flex space-x-2 items-center">
                     <Badge className={`${org?.chipStyle} p-2 flex space-x-2 w-fit rounded-sm`}>

@@ -1,4 +1,3 @@
-import React from "react";
 import { BookMarked, CodeXml, Gem, LogIn, UserRoundCog } from "lucide-react";
 import  {  GradientIcon } from "../ui/GradientIcon";
 
