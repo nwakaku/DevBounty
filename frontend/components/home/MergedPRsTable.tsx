@@ -140,7 +140,7 @@ export default function MergedPRsTable({ mergedPRs, orgData }: MergedPRsTablePro
               <TableCell>{new Date(pr.merged_at).toLocaleString()}</TableCell>
               <TableCell className="text-center">#{pr.fixesReference}</TableCell>
               <TableCell className="text-center">
-                {isUser === pr.user.login ? renderClaimButton(pr) : "Not Receiver"}
+                {isUser === pr.user.login ? renderClaimButton(pr) : "Closed"}
               </TableCell>
             </TableRow>
           ))}
