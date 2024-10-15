@@ -101,7 +101,7 @@ export default function MergedPRsTable({ mergedPRs, orgData }: MergedPRsTablePro
 
   const renderClaimButton = (pr: MergedPR) => {
     const info = rewardInfo[pr.fixesReference];
-    if (!info) return <p>Not Receiver</p>;
+    if (!info) return <p>Closed</p>;
 
     const now = Math.floor(Date.now() / 1000);
     const isClaimable = now >= info.unlockTime;
@@ -140,7 +140,7 @@ export default function MergedPRsTable({ mergedPRs, orgData }: MergedPRsTablePro
               <TableCell>{new Date(pr.merged_at).toLocaleString()}</TableCell>
               <TableCell className="text-center">#{pr.fixesReference}</TableCell>
               <TableCell className="text-center">
-                {isUser === pr.user.login ? renderClaimButton(pr) : "Not Receiver"}
+                {isUser === pr.user.login ? renderClaimButton(pr) : "Closed"}
               </TableCell>
             </TableRow>
           ))}
