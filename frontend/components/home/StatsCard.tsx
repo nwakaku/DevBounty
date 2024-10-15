@@ -4,7 +4,7 @@ export function StatsCard() {
   const repoCount = localStorage.getItem("repoCount");
   return (
     <div className="flex items-center gap-4">
-      <div className="p-4 shadow-sm rounded-md border border-gray-600 space-y-2 bg-[#27275b]">
+      <div className="p-4 shadow-sm rounded-md border border-gray-600 space-y-2 bg-[#111128]">
         <h2 className="text-md md:text-lg text-white">Available Funds</h2>
         <div className="flex justify-between items-center">
           <h1 className="md:text-2xl text-white font-bold md:font-medium">9600 APTOs</h1>

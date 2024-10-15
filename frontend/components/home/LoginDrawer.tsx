@@ -53,11 +53,11 @@ export default function GitHubAuthComponent() {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button size="sm" onClick={() => setOpen(true)}>
+        <Button className="ml-2 bg-gray-600" size="sm" onClick={() => setOpen(true)}>
           <Github /> Login
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[800px] bg-slate-200">
+      <DialogContent className="sm:max-w-[800px] bg-slate-50">
         <DialogHeader>
           <DialogTitle>{user ? "Select Your Role" : "GitHub Login"}</DialogTitle>
         </DialogHeader>
