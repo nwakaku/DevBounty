@@ -37,7 +37,7 @@ function App() {
               <div className="flex justify-start items-center w-full md:px-8">
                 <div className="space-y-6">
                   <h2 className="text-3xl md:text-6xl text-white font-bold">
-                    Aptos
+                    
                     <br /> Open-Source{" "}
                     <span className="text-[#6EE7B7]">
                       <br />
