@@ -8,6 +8,7 @@ Incentivizing open-source development on Aptos blockchain.
 - [How It Works](#how-it-works)
 - [Technology Stack](#technology-stack)
 - [Getting Started](#getting-started)
+- [Local Development](#local-development)
 - [Future Roadmap](#future-roadmap)
 
 ## Overview
@@ -54,6 +55,39 @@ DevBounty is a platform designed to reward open-source developers for their cont
 2. Connect your GitHub account
 3. Link your Petra Wallet
 4. Start exploring open issues and contributing!
+
+## Local Development
+
+To run DevBounty locally, follow these steps:
+
+1. **Clone the repository**
+   ```
+   git clone https://github.com/your-org/devbounty.git
+   cd devbounty
+   ```
+
+2. **Install dependencies**
+   ```
+   npm install
+   ```
+
+3. **Set up environment variables**
+   Create a `.env` file in the root directory and add the following variables:
+   ```
+   VITE_GITHUB_CLIENT_ID=your_github_client_id
+   VITE_APTOS_NODE_URL=https://fullnode.devnet.aptoslabs.com/v1
+   VITE_APTOS_FAUCET_URL=https://faucet.devnet.aptoslabs.com/v1
+   ```
+
+4. **Run the development server**
+   ```
+   npm run dev
+   ```
+
+5. **Open your browser**
+   Navigate to `http://localhost:5173` to view the application.
+
+Note: To interact with the Aptos blockchain, you'll need to set up a local Aptos node or connect to a testnet. Refer to the [Aptos documentation](https://aptos.dev/nodes/local-testnet/local-testnet-index) for more information on setting up a local node.
 
 ## Future Roadmap
 
