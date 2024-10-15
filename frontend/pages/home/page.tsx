@@ -16,7 +16,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 // Initialize Octokit
 const octokit = new Octokit({
-  auth: process.env.VITE_GITHUB_KEY, // Make sure to set this in your environment variables
+  auth: "", // Make sure to set this in your environment variables
 });
 
 function Home() {

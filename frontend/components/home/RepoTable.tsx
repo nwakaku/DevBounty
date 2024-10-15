@@ -32,9 +32,9 @@ const organisations = [
 const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
   const [repos, setRepos] = useState<any[]>([]);
   const [searchTerm, setSearchTerm] = useState<string>("");
-  const [rewards, setRewards] = useState<any[]>([]);
+  const rewards  = [] as any;
   const [currentPage, setCurrentPage] = useState<number>(0);
-  const [itemsPerPage, setItemsPerPage] = useState<number>(10);
+  const itemsPerPage = 10;
 
   const fetchRepos = async () => {
     const allRepos: Repository[] = [];
@@ -50,7 +50,7 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
     return allRepos;
   };
 
-  console.log(setItemsPerPage(8), setRewards([]));
+  // console.log(setItemsPerPage(8), set)
 
   const { data, error, isLoading } = useQuery({
     queryKey: ["repos"],
@@ -106,7 +106,7 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
   if (isLoading) {
     return (
       <div className="flex justify-center items-center">
-        <p className="text--lg text-[#4F46E5] mt-12">Loading Repositories....</p>
+        <p className="text--lg text-blue-500">Loading Repositories....</p>
       </div>
     );
   }
@@ -114,7 +114,7 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
   if (error) {
     return (
       <div className="flex justify-center items-center">
-        <p className="text--lg text-red-500 mt-12">An Error occurred Fetching Repositories....</p>
+        <p className="text--lg text-blue-500">An Error occurred Fetching Repositories....</p>
       </div>
     );
   }
@@ -125,14 +125,14 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
         <Input
           type="text"
           placeholder="Search by name, org or description"
-          className="max-w-xl text-black rounded-sm"
+          className="max-w-xl text-black"
           value={searchTerm}
           onChange={(e) => setSearchTerm(e.target.value)}
         />
       </div>
       <div>
         <Table>
-          <TableHeader className="bg-slate-900 hover:bg-gray-500">
+          <TableHeader className="bg-slate-700">
             <TableRow className="rounded-t-2xl">
               {/* <TableHead className="text-white font-semibold">No </TableHead> */}
               <TableHead className="text-white font-semibold">Organisation </TableHead>
@@ -143,7 +143,7 @@ const RepoTable: React.FC<RepositoryTableProps> = ({ onRepoSelect }) => {
               <TableHead className="text-white text-center font-semibold">Address</TableHead>
             </TableRow>
           </TableHeader>
-          <TableBody className="">
+          <TableBody>
             {paginatedRepos.map((repo, index) => {
               const org = repo.orgData;
               return (
